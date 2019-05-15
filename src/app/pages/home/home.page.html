@@ -1,0 +1,89 @@
+<ion-header>
+
+  <ion-toolbar *ngIf="!isSearchBarOpened">
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title color="danger">
+      Home
+    </ion-title>
+
+    <ion-buttons slot="end" (click)="isSearchBarOpened=true">
+      <ion-icon name="search" size="large"></ion-icon>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="isSearchBarOpened">
+    <ion-searchbar showCancelButton="true" (ionCancel)="isSearchBarOpened = false">
+
+    </ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <input type="text">
+
+  <ion-slides mode="ios" pager="ios" scrollbar="ios">
+    <ion-slide>
+
+
+      <ion-card class="welcome-card">
+        <ion-img src="/assets/shapes.svg"></ion-img>
+        <ion-card-header>
+
+          <ion-card-subtitle>Domenico stronzo</ion-card-subtitle>
+          <ion-card-title>Subreddits</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Preview dell'articolooooooooooooooooo
+            oooooooooooooooooooooooooooooooooooooo
+            oooooooooooooooooooooooooooooooooooooo
+            oooooooooooooooooooooooooooooooooooooo
+          </p>
+
+          <ion-button fill="clear" slot="end" *ngIf="!prefButtonIsClicked" 
+          (click)="prefButtonIsClicked=true"> <!--aggiungere collegamento ai salvati-->
+              <ion-icon  name="star-outline" size="small"></ion-icon>
+          </ion-button>
+    
+          <ion-button fill="clear" slot="end" *ngIf="prefButtonIsClicked"
+          (click)="prefButtonIsClicked=false"> <!--rimuovere collegamento dai salvati-->
+              <ion-icon  name="star" size="small"></ion-icon>
+          </ion-button>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card class="welcome-card">
+        <ion-img src="/assets/shapes.svg"></ion-img>
+        <ion-card-header>
+          <ion-card-subtitle>Get Started</ion-card-subtitle>
+          <ion-card-title>Welcome to Ionic</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Now that your app has been created, you'll want to start building out features and components. Check out
+            some
+            of the resources below for next steps.</p>
+        </ion-card-content>
+      </ion-card>
+
+    </ion-slide>
+  </ion-slides>
+
+  <ion-list lines="none">
+    <ion-item (click)="goToDetails(post)" *ngFor="let post of posts">
+      <ion-avatar slot="start">
+        <img [src]="replaceImage(post.data.thumbnail)" />
+      </ion-avatar>
+      <ion-label>{{ post.data.title }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

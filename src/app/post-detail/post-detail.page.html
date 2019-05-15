@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Post detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div *ngIf="post.data.preview">
+      <ion-img [src]="fixImage(post.data.preview.images[0].source.url)"></ion-img>
+  </div>
+  {{ post.data.title }}
+
+</ion-content>
